@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/datatables.css">
+    <link rel="stylesheet" href="assets/css/datatables-responsive.css">
+    <link rel="stylesheet" href="assets/css/toaster.css">
+    <link rel="stylesheet" href="assets/css/buttons.datatables.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column py-2">
+        <div class="container-fluid">
+    
+            <a class="navbar-brand" id="pageTitle" data-i18n="pageTitle">
+            </a>
+    
+            <div class="d-flex">
+                <select id="langSelect" class="form-select form-select-sm w-auto">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+    
+        </div>
+    
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol id="breadcrumb" class="breadcrumb breadcrumb-inside-nav mb-0 m-3">
+                </ol>
+            </nav>
+        </div>
+    </nav>
+    <div class="container p-3 my-5 bg-light border border-primary">
+        <div>
+            <button id="addBtn" class="btn btn-primary mb-3" data-i18n="addEmployee">New Employee</button>
+        </div>
+        <table id="employeesTable" class="table table-bordered nowrap">
+            
+        </table>
+    </div>
+
+    <div class="modal fade" id="employeeModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle" data-i18n="addEmployee"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="empForm" novalidate>
+                        <input type="hidden" id="empId" name="empId">
+                    
+                        <div class="mb-3">
+                            <label for="empFirstNameEn" class="form-label" data-i18n="firstNameEn">First Name <span class="text-danger">*</span></label>
+                            <input id="empFirstNameEn" name="firstNameEn" class="form-control" required>
+                            <div class="invalid-feedback">First name is required.</div>
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="empLastNameEn" class="form-label" data-i18n="lastNameEn">Last Name <span class="text-danger">*</span></label>
+                            <input id="empLastNameEn" name="lastNameEn" class="form-control" required>
+                            <div class="invalid-feedback">Last name is required.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="empFirstNameAr" class="form-label" data-i18n="firstNameAr">First Name <span
+                                    class="text-danger">*</span></label>
+                            <input id="empFirstNameAr" name="firstNameAr" class="form-control" required>
+                            <div class="invalid-feedback">First name is required.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="empLastNameAr" class="form-label" data-i18n="lastNameAr">Last Name <span
+                                    class="text-danger">*</span></label>
+                            <input id="empLastNameAr" name="lastNameAr" class="form-control" required>
+                            <div class="invalid-feedback">Last name is required.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="empEmail" class="form-label" data-i18n="email">Email <span class="text-danger">*</span></label>
+                            <input id="empEmail" name="email" type="email" class="form-control" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="empPositionEn" class="form-label" data-i18n="positionEn">Position</label>
+                            <input id="empPositionEn" name="positionEn" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="empPositionAr" class="form-label" data-i18n="positionAr">Position</label>
+                            <input id="empPositionAr" name="positionAr" class="form-control">
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="empAge" class="form-label" data-i18n="age">Age</label>
+                            <input id="empAge" name="age" type="number" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="empSalary" class="form-label" data-i18n="salary">Salary</label>
+                            <input id="empSalary" name="salary" type="number" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="empJoinDate" class="form-label" data-i18n="joinDate">Join Date</label>
+                            <input id="empJoinDate" name="joinDate" type="date" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="empAddressEn" class="form-label" data-i18n="addressEn">Address</label>
+                            <input id="empAddressEn" name="addressEn" type="text" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="empAddressAr" class="form-label" data-i18n="addressAr">Address</label>
+                            <input id="empAddressAr" name="addressAr" type="text" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="empPhoneNumber" class="form-label" data-i18n="phoneNumber">Phone Number</label>
+                            <input id="empPhoneNumber" name="phoneNumber" type="text" class="form-control">
+                        </div>
+                    </form>
+                    
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="cancel">Cancel</button>
+                        <button id="btnSave" class="btn btn-primary" data-i18n="save">Save</button>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" data-i18n="confirmDelete">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="confirmationMessageTag">Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnConfirmDelete" class="btn btn-danger" data-i18n="delete">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="cancel">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/datatables.js"></script>
+    <script src="assets/js/datatables-bootstrap.js"></script>
+    <script src="assets/js/datatable-responsive.js"></script>
+    <script src="assets/js/responsive-bootstrap.js"></script>
+    <script src="assets/js/toaster.js"></script>
+    <script src="assets/js/datatables.buttons.js"></script>
+    <script src="assets/js/buttons.datatables.js"></script>
+    <script src="assets/js/jszip.js"></script>
+    <script src="assets/js/pdfmake.js"></script>
+    <script src="assets/js/vfsfonts.js"></script>
+    <script src="assets/js/buttons.html5.js"></script>
+    <script src="assets/js/buttons.print.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+body.rtl {
+    direction: rtl;
+}
+
+body.rtl .modal {
+    direction: rtl;
+    text-align: right;
+}
+
+body.rtl table.dataTable {
+    direction: rtl;
+}
+
+body.rtl .dataTables_wrapper {
+    direction: rtl;
+}
+
+body[dir="rtl"] #employeesTable th, body[dir="rtl"] #employeesTable td {
+    text-align: right !important;
+}
+
+body[dir="ltr"] #employeesTable th, body[dir="ltr"] #employeesTable td {
+    text-align: left !important;
+}
+
+body:not(.rtl) table.dataTable {
+    direction: ltr;
+}
+
+th,
+td {
+    text-align: right !important;
+}
+
+[dir="rtl"] .breadcrumb {
+    direction: rtl;
+}
+
+[dir="rtl"] .breadcrumb-item+.breadcrumb-item::before {
+    float: right;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+.breadcrumb-inside-nav .breadcrumb-item,
+.breadcrumb-inside-nav .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.breadcrumb-inside-nav .breadcrumb-item.active {
+    color: #fff;
+}
+
+.breadcrumb-inside-nav .breadcrumb-item+.breadcrumb-item::before {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.table .dropdown-toggle.btn-sm {
+    padding: 2px 6px;
+    font-size: 12px;
+    width: 100%;
+}
+
+.table .dropdown-menu {
+    min-width: 100px;
+}

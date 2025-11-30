@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column py-2">
+        <div class="container-fluid">
+    
+            <a class="navbar-brand" id="pageTitle" data-i18n="pageTitle">
+            </a>
+    
+            <div class="d-flex">
+                <select id="langSelect" class="form-select form-select-sm w-auto">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+    
+        </div>
+
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol id="breadcrumb" class="breadcrumb breadcrumb-inside-nav mb-0 m-3">
+                </ol>
+            </nav>
+        </div>
+    </nav>
+    <div class="container p-3 my-5 bg-light border border-primary">
+        <ul class="list-group">
+            <li class="list-group-item"><b data-i18n="firstName">First Name:</b> <span id="firstName"></span></li>
+            <li class="list-group-item"><b data-i18n="lastName">Last Name:</b> <span id="lastName"></span></li>
+            <li class="list-group-item"><b data-i18n="email">Email:</b> <span id="email"></span></li>
+            <li class="list-group-item"><b data-i18n="position">Position:</b> <span id="position"></span></li>
+            <li class="list-group-item"><b data-i18n="age">Age:</b> <span id="age"></span></li>
+            <li class="list-group-item"><b data-i18n="salary">Salary:</b> <span id="salary"></span></li>
+            <li class="list-group-item"><b data-i18n="joinDate">Join Date:</b> <span id="joinDate"></span></li>
+            <li class="list-group-item"><b data-i18n="address">Address:</b> <span id="address"></span></li>
+            <li class="list-group-item"><b data-i18n="phoneNumber">Phone Number:</b> <span id="phoneNumber"></span></li>
+        </ul>
+    </div>
+
+    <script type="module" src="detailsScript.js"></script>
+    <script src="assets/js/jquery.js"></script>
+</body>
+</html>
