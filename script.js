@@ -134,7 +134,6 @@ $("#langSelect").on("change", function () {
   lang = this.value;
   document.cookie = `lang=${lang};`;
   applyTranslations(lang);
-  $("body").attr("dir", lang === "ar" ? "rtl" : "ltr");
   buildTable(lang);
   buildBreadcrumb(lang);
 });

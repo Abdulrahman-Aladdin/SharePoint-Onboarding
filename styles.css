@@ -1,31 +1,9 @@
-body.rtl {
-    direction: rtl;
-}
-
-body.rtl .modal {
-    direction: rtl;
-    text-align: right;
-}
-
-body.rtl table.dataTable {
-    direction: rtl;
-}
-
-body.rtl .dataTables_wrapper {
-    direction: rtl;
-}
-
 body[dir="rtl"] #employeesTable th, body[dir="rtl"] #employeesTable td {
     text-align: right !important;
 }
 
 body[dir="ltr"] #employeesTable th, body[dir="ltr"] #employeesTable td {
     text-align: left !important;
-}
-
-th,
-td {
-    text-align: right !important;
 }
 
 [dir="rtl"] .breadcrumb {
