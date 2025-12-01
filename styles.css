@@ -53,11 +53,3 @@ td {
 .dt-column-order {
     color: blue;
 }
-
-[dir="rtl"] .dt-layout-start {
-    align-items: right !important;
-}
-
-[dir="rtl"] .dt-layout-end {
-    align-items: left !important;
-}

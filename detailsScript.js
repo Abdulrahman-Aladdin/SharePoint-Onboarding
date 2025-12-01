@@ -34,6 +34,34 @@ function buildBreadcrumb(employeeName, lang) {
     `);
 }
 
+function refreshData(employee, lang) {
+  if (!employee) {
+    $("body").html("<h3>Employee not found</h3>");
+  } else {
+    if (lang === "ar") {
+      $("#firstName").text(employee.firstNameAr);
+      $("#lastName").text(employee.lastNameAr);
+      $("#email").text(employee.email);
+      $("#position").text(employee.positionAr);
+      $("#age").text(employee.age);
+      $("#salary").text(employee.salary);
+      $("#joinDate").text(employee.joinDate);
+      $("#address").text(employee.addressAr);
+      $("#phoneNumber").text(employee.phoneNumber);
+    } else if (lang === "en") {
+      $("#firstName").text(employee.firstNameEn);
+      $("#lastName").text(employee.lastNameEn);
+      $("#email").text(employee.email);
+      $("#position").text(employee.positionEn);
+      $("#age").text(employee.age);
+      $("#salary").text(employee.salary);
+      $("#joinDate").text(employee.joinDate);
+      $("#address").text(employee.addressEn);
+      $("#phoneNumber").text(employee.phoneNumber);
+    }
+  }
+}
+
 const params = new URLSearchParams(window.location.search);
 const id = Number(params.get("id"));
 let lang = getCookie("lang") || "en";
@@ -61,30 +89,8 @@ $("#langSelect").on("change", function () {
       : `${employee.firstNameEn} ${employee.lastNameEn}`,
     lang
   );
+
+  refreshData(employee, lang);
 });
 
-if (!employee) {
-  $("body").html("<h3>Employee not found</h3>");
-} else {
-  if (lang === 'ar') {
-    $("#firstName").text(employee.firstNameAr);
-    $("#lastName").text(employee.lastNameAr);
-    $("#email").text(employee.email);
-    $("#position").text(employee.positionAr);
-    $("#age").text(employee.age);
-    $("#salary").text(employee.salary);
-    $("#joinDate").text(employee.joinDate);
-    $("#address").text(employee.addressAr);
-    $("#phoneNumber").text(employee.phoneNumber);
-  } else if (lang === 'en') {
-    $("#firstName").text(employee.firstNameEn);
-    $("#lastName").text(employee.lastNameEn);
-    $("#email").text(employee.email);
-    $("#position").text(employee.positionEn);
-    $("#age").text(employee.age);
-    $("#salary").text(employee.salary);
-    $("#joinDate").text(employee.joinDate);
-    $("#address").text(employee.addressEn);
-    $("#phoneNumber").text(employee.phoneNumber);
-  }
-}
+refreshData(employee, lang);
