@@ -1,5 +1,6 @@
 class Database {
   _data = [];
+  _idCounter = 1;
 
   constructor() {
     this._data = [
@@ -68,6 +69,8 @@ class Database {
         addressAr: "321 شارع الميبل، قرية هاملت",
       },
     ];
+
+    this._idCounter = 5;
   }
 
   getAll() {
@@ -79,7 +82,7 @@ class Database {
   }
 
   create(item) {
-    item.id = this._data.length + 1;
+    item.id = this._idCounter++;
     this._data.push(item);
     return item;
   }

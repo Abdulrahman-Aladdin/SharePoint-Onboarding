@@ -23,10 +23,6 @@ body[dir="ltr"] #employeesTable th, body[dir="ltr"] #employeesTable td {
     text-align: left !important;
 }
 
-body:not(.rtl) table.dataTable {
-    direction: ltr;
-}
-
 th,
 td {
     text-align: right !important;
@@ -38,8 +34,7 @@ td {
 
 [dir="rtl"] .breadcrumb-item+.breadcrumb-item::before {
     float: right;
-    padding-left: .5rem;
-    padding-right: .5rem;
+    
 }
 
 .breadcrumb-inside-nav .breadcrumb-item,
@@ -55,12 +50,14 @@ td {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.table .dropdown-toggle.btn-sm {
-    padding: 2px 6px;
-    font-size: 12px;
-    width: 100%;
+.dt-column-order {
+    color: blue;
 }
 
-.table .dropdown-menu {
-    min-width: 100px;
+[dir="rtl"] .dt-layout-start {
+    align-items: right !important;
+}
+
+[dir="rtl"] .dt-layout-end {
+    align-items: left !important;
 }

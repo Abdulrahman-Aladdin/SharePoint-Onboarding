@@ -29,7 +29,17 @@ function buildTable(lang) {
     data: db.getAll(),
     layout: {
       topStart: {
-        buttons: [{ extend: "excel", text: translations[lang]["exportExcel"] }],
+        buttons: [
+          {
+            text: translations[lang]["exportExcel"],
+            action: function (e, dt, node, config) {
+              const worksheet = XLSX.utils.json_to_sheet(db.getAll());
+              const workbook = XLSX.utils.book_new();
+              XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+              XLSX.writeFile(workbook, "employees.xlsx");
+            },
+          },
+        ],
       },
     },
     language: {
@@ -47,33 +57,28 @@ function buildTable(lang) {
       },
     },
     columns: [
-      {
-        data: null,
-        title: translations[lang]["actions"],
-        render: (data) => `
-          <div class="dropdown">
-            <button class="btn btn-primary btn-sm dropdown-toggle" 
-                    type="button" data-bs-toggle="dropdown">
-              ${translations[lang]["actions"]}
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item editBtn" href="#">${translations[lang]["edit"]}</a></li>
-              <li><a class="dropdown-item deleteBtn" href="#">${translations[lang]["delete"]}</a></li>
-              <li><a class="dropdown-item view-btn" data-id="${data.id}" href="#">
-                ${translations[lang]["view"]}
-              </a></li>
-            </ul>
-          </div>
-        `,
-      },
       { data: tableColumns[lang][0], title: translations[lang]["firstName"] },
       { data: tableColumns[lang][1], title: translations[lang]["lastName"] },
       { data: tableColumns[lang][2], title: translations[lang]["email"] },
       { data: tableColumns[lang][3], title: translations[lang]["position"] },
       { data: tableColumns[lang][4], title: translations[lang]["age"] },
+      {
+        data: null,
+        title: translations[lang]["actions"],
+        render: (data) => `
+          <button class="btn btn-info btn-sm view-btn" data-id="${data.id}" 
+           data-bs-toggle="tooltip" data-bs-placement="top" title="${translations[lang]["view"]}"><i class="bi bi-eye-fill"></i></button>
+          <button class="btn btn-warning btn-sm editBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="${translations[lang]["edit"]}"><i class="bi bi-pencil-square"></i></button>
+          <button class="btn btn-danger btn-sm deleteBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="${translations[lang]["delete"]}"><i class="bi bi-person-x"></i></button>
+        `,
+      },
     ],
     responsive: {
-      details: false,
+      details: {
+        display: DataTable.Responsive.display.childRowImmediate,
+        target: "",
+        type: "none",
+      },
     },
   });
 }
@@ -232,9 +237,7 @@ $("#employeesTable").on("click", ".deleteBtn", function () {
     .on("click", function () {
       db.delete(data.id);
       refreshTable();
-      // Display an info toast with no title
       toastr.success(translations[lang]["employeeDeleted"]);
-      document.activeElement.blur();
       confirmationModal.hide();
     });
 
