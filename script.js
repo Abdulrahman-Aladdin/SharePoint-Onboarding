@@ -1,5 +1,6 @@
 import db from "./assets/customJs/db.js";
 import translations from "./assets/customJs/i18n.js";
+import headerHtml from "./layouts/header.js";
 
 function applyTranslations(lang) {
   $("[data-i18n]").each(function () {
@@ -25,8 +26,6 @@ function applyTranslations(lang) {
       `<i class="bi bi-person-plus-fill m-1"></i> ${translations[lang]["addEmployee"]}`
     );
   }
-
-  $("[required]").html += ` <span class="text-danger">*</span>`;
 }
 
 const tableColumns = {
@@ -152,6 +151,8 @@ function loadColumnsSelection(lang) {
         `);
   });
 }
+
+$("#header").html(headerHtml);
 
 let lang = getCookie("lang") || "en";
 let operation = "";
