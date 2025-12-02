@@ -1,6 +1,7 @@
 import db from "./assets/customJs/db.js";
 import translations from "./assets/customJs/i18n.js";
 import headerHtml from "./layouts/header.js";
+import footerHtml from "./layouts/footer.js";
 
 function applyTranslations(lang) {
   $("[data-i18n]").each(function () {
@@ -153,6 +154,7 @@ function loadColumnsSelection(lang) {
 }
 
 $("#header").html(headerHtml);
+$("#footer").html(footerHtml);
 
 let lang = getCookie("lang") || "en";
 let operation = "";

@@ -1,6 +1,7 @@
 import db from "./assets/customJs/db.js";
 import translations from "./assets/customJs/i18n.js";
 import headerHtml from "./layouts/header.js";
+import footerHtml from "./layouts/footer.js";
 
 function applyTranslations(lang) {
   document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -64,6 +65,7 @@ function refreshData(employee, lang) {
 }
 
 $("#header").html(headerHtml);
+$("#footer").html(footerHtml);
 const params = new URLSearchParams(window.location.search);
 const id = Number(params.get("id"));
 let lang = getCookie("lang") || "en";
