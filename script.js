@@ -14,12 +14,16 @@ function applyTranslations(lang) {
     html.setAttribute("dir", "rtl");
     html.setAttribute("lang", "ar");
     bootstrap.href = "assets/css/bootstrap.rtl.min.css";
-    $("#addBtn").html(`<i class="bi bi-person-plus-fill m-1"></i> ${translations[lang]["addEmployee"]}`);
+    $("#addBtn").html(
+      `<i class="bi bi-person-plus-fill m-1"></i> ${translations[lang]["addEmployee"]}`
+    );
   } else {
     html.setAttribute("dir", "ltr");
     html.setAttribute("lang", "en");
     bootstrap.href = "assets/css/bootstrap.min.css";
-    $("#addBtn").html(`<i class="bi bi-person-plus-fill m-1"></i> ${translations[lang]["addEmployee"]}`);
+    $("#addBtn").html(
+      `<i class="bi bi-person-plus-fill m-1"></i> ${translations[lang]["addEmployee"]}`
+    );
   }
 
   $("[required]").html += ` <span class="text-danger">*</span>`;
@@ -29,6 +33,22 @@ const tableColumns = {
   en: ["firstNameEn", "lastNameEn", "email", "positionEn", "age", "addressEn"],
   ar: ["firstNameAr", "lastNameAr", "email", "positionAr", "age", "addressAr"],
 };
+
+const allColumns = [
+  "firstNameEn",
+  "firstNameAr",
+  "lastNameEn",
+  "lastNameAr",
+  "email",
+  "positionEn",
+  "positionAr",
+  "age",
+  "salary",
+  "joinDate",
+  "addressEn",
+  "addressAr",
+  "phoneNumber",
+];
 
 function buildTable(lang) {
   if (employeeTable) {
@@ -44,10 +64,12 @@ function buildTable(lang) {
           {
             text: translations[lang]["exportExcel"],
             action: function (e, dt, node, config) {
-              const worksheet = XLSX.utils.json_to_sheet(db.getAll());
-              const workbook = XLSX.utils.book_new();
-              XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-              XLSX.writeFile(workbook, "employees.xlsx");
+              // const worksheet = XLSX.utils.json_to_sheet(db.getAll());
+              // const workbook = XLSX.utils.book_new();
+              // XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+              // XLSX.writeFile(workbook, "employees.xlsx");
+              loadColumnsSelection(lang);
+              columnsSelectionModal.show();
             },
           },
         ],
@@ -80,7 +102,7 @@ function buildTable(lang) {
           <button class="btn btn-info btn-sm view-btn" data-id="${data.id}" 
            data-bs-toggle="tooltip" data-bs-placement="top" title="${translations[lang]["view"]}"><i class="bi bi-eye-fill"></i></button>
           <button class="btn btn-warning btn-sm editBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="${translations[lang]["edit"]}"><i class="bi bi-pencil-square"></i></button>
-          <button class="btn btn-danger btn-sm deleteBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="${translations[lang]["delete"]}"><i class="bi bi-person-x"></i></button>
+          <button class="btn btn-danger btn-sm deleteBtn" data-bs-toggle="tooltip" data-bs-placement="top" title="${translations[lang]["delete"]}"><i class="bi bi-person-x-fill"></i></button>
         `,
       },
     ],
@@ -113,11 +135,30 @@ function buildBreadcrumb(lang) {
     `);
 }
 
+function loadColumnsSelection(lang) {
+  const form = $("#columnsForm");
+  form.html("");
+
+  allColumns.forEach((col) => {
+    const labelText = translations[lang][col];
+
+    form.append(`
+            <div class="form-check mb-2">
+                <input class="form-check-input selectColsCheckBox" type="checkbox" id="col_${col}" value="${col}">
+                <label class="form-check-label" for="col_${col}">
+                    ${labelText}
+                </label>
+            </div>
+        `);
+  });
+}
+
 let lang = getCookie("lang") || "en";
 let operation = "";
 let employeeTable = null;
 const empModal = new bootstrap.Modal($("#employeeModal"));
 const confirmationModal = new bootstrap.Modal($("#deleteConfirmationModal"));
+const columnsSelectionModal = new bootstrap.Modal($("#exportModal"));
 
 $("#langSelect").val(lang);
 
@@ -257,4 +298,35 @@ $("#employeesTable").on("click", ".deleteBtn", function () {
 $("#employeesTable").on("click", ".view-btn", function () {
   const id = $(this).data("id");
   window.location.href = `details.html?id=${id}`;
+});
+
+$("#selectAllCols").on("click", function () {
+  $(".selectColsCheckBox").prop("checked", true);
+});
+
+$("#unselectAllCols").on("click", function () {
+  $(".selectColsCheckBox").prop("checked", false);
+});
+
+$("#downloadExcelBtn").on("click", function () {
+  const selectedCols = [];
+  $(".selectColsCheckBox:checked").each(function () {
+    selectedCols.push($(this).val());
+  });
+
+  console.log("Selected Columns: ", selectedCols);
+  const allData = db.getAll();
+
+  const filteredData = allData.map((emp) => {
+    const filteredEmp = {};
+    selectedCols.forEach((col) => {
+      filteredEmp[translations[lang][col]] = emp[col];
+    });
+    return filteredEmp;
+  });
+
+  const worksheet = XLSX.utils.json_to_sheet(filteredData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+  XLSX.writeFile(workbook, "employees.xlsx");
 });

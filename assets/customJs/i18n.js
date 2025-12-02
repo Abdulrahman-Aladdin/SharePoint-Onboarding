@@ -45,6 +45,10 @@ const translations = {
     addressEn: "Address (EN)",
     addressAr: "Address (AR)",
     exportExcel: "Export to Excel",
+    selectAll: "Select All",
+    unselectAll: "Deselect All",
+    selectColumns: "Select Columns",
+    downloadExcel: "Download Excel",
   },
   ar: {
     pageTitle: "نظام إدارة الموظفين",
@@ -92,6 +96,10 @@ const translations = {
     addressEn: "العنوان (إنجليزي)",
     addressAr: "العنوان (عربي)",
     exportExcel: "تصدير إلى إكسل",
+    selectAll: "تحديد الكل",
+    unselectAll: "إلغاء تحديد الكل",
+    selectColumns: "اختر الأعمدة",
+    downloadExcel: "تحميل إكسل",
   },
 };
 

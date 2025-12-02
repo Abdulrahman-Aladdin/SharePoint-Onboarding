@@ -157,6 +157,34 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exportModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+    
+                <div class="modal-header">
+                    <h5 class="modal-title" data-i18n="selectColumns">Select Columns</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <div class="modal-body">
+                    <div class="mb-3 d-flex gap-2">
+                        <button id="selectAllCols" class="btn btn-success btn-sm" data-i18n="selectAll">Select All</button>
+                        <button id="unselectAllCols" class="btn btn-danger btn-sm" data-i18n="unselectAll">Unselect All</button>
+                    </div>
+
+                    <form id="columnsForm"></form>
+                </div>
+    
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="cancel">Cancel</button>
+                    <button class="btn btn-success" id="downloadExcelBtn" data-i18n="downloadExcel">Download Excel</button>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
     
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
