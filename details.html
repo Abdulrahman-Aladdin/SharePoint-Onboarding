@@ -25,24 +25,64 @@
 
         <div class="container-fluid">
             <nav aria-label="breadcrumb">
-                <ol id="breadcrumb" class="breadcrumb breadcrumb-inside-nav mb-0 m-3">
+                <ol id="breadcrumb" class="breadcrumb breadcrumb-inside-nav mb-0">
                 </ol>
             </nav>
         </div>
     </nav>
-    <div class="container p-3 my-5 bg-light border border-primary">
-        <ul class="list-group">
-            <li class="list-group-item"><b data-i18n="firstName">First Name:</b> <span id="firstName"></span></li>
-            <li class="list-group-item"><b data-i18n="lastName">Last Name:</b> <span id="lastName"></span></li>
-            <li class="list-group-item"><b data-i18n="email">Email:</b> <span id="email"></span></li>
-            <li class="list-group-item"><b data-i18n="position">Position:</b> <span id="position"></span></li>
-            <li class="list-group-item"><b data-i18n="age">Age:</b> <span id="age"></span></li>
-            <li class="list-group-item"><b data-i18n="salary">Salary:</b> <span id="salary"></span></li>
-            <li class="list-group-item"><b data-i18n="joinDate">Join Date:</b> <span id="joinDate"></span></li>
-            <li class="list-group-item"><b data-i18n="address">Address:</b> <span id="address"></span></li>
-            <li class="list-group-item"><b data-i18n="phoneNumber">Phone Number:</b> <span id="phoneNumber"></span></li>
-        </ul>
+    <div class="container my-5">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0" data-i18n="employeeDetails">Employee Details</h4>
+            </div>
+    
+            <div class="card-body p-0">
+                <table class="table table-striped mb-0">
+                    <tbody>
+                        <tr>
+                            <th data-i18n="firstName">First Name</th>
+                            <td id="firstName"></td>
+                        </tr>
+                        <tr>
+                            <th data-i18n="lastName">Last Name</th>
+                            <td id="lastName"></td>
+                        </tr>
+                        <tr>
+                            <th data-i18n="email">Email</th>
+                            <td id="email"></td>
+                        </tr>
+                        <tr>
+                            <th data-i18n="position">Position</th>
+                            <td id="position"></td>
+                        </tr>
+                        <tr>
+                            <th data-i18n="age">Age</th>
+                            <td id="age"></td>
+                        </tr>
+                        <tr>
+                            <th data-i18n="salary">Salary</th>
+                            <td id="salary"></td>
+                        </tr>
+                        <tr>
+                            <th data-i18n="joinDate">Join Date</th>
+                            <td id="joinDate"></td>
+                        </tr>
+                        <tr>
+                            <th data-i18n="address">Address</th>
+                            <td id="address"></td>
+                        </tr>
+                        <tr>
+                            <th data-i18n="phoneNumber">Phone Number</th>
+                            <td id="phoneNumber"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+
+
 
     <script type="module" src="detailsScript.js"></script>
     <script src="assets/js/jquery.js"></script>

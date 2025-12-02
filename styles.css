@@ -1,20 +1,3 @@
-body[dir="rtl"] #employeesTable th, body[dir="rtl"] #employeesTable td {
-    text-align: right !important;
-}
-
-body[dir="ltr"] #employeesTable th, body[dir="ltr"] #employeesTable td {
-    text-align: left !important;
-}
-
-[dir="rtl"] .breadcrumb {
-    direction: rtl;
-}
-
-[dir="rtl"] .breadcrumb-item+.breadcrumb-item::before {
-    float: right;
-    
-}
-
 .breadcrumb-inside-nav .breadcrumb-item,
 .breadcrumb-inside-nav .breadcrumb-item a {
     color: rgba(255, 255, 255, 0.85);
@@ -28,6 +11,84 @@ body[dir="ltr"] #employeesTable th, body[dir="ltr"] #employeesTable td {
     color: rgba(255, 255, 255, 0.7);
 }
 
+[dir="rtl"] .breadcrumb {
+    direction: rtl;
+}
+
+[dir="rtl"] .breadcrumb-item+.breadcrumb-item {
+    padding-left: 0;
+    padding-right: .5rem;
+}
+
+[dir="rtl"] .breadcrumb-item+.breadcrumb-item::before {
+    float: right;
+    padding-left: .5rem;
+    padding-right: 0;
+}
+
 .dt-column-order {
     color: blue;
+}
+
+.view-btn  {
+    color: #0dcaf0 !important;
+    background-color: #ffffff !important;
+    border-color: #0dcaf0 !important;
+    transition: background-color 0.4s, color 0.4s !important;
+    border-width: 2px !important;
+}
+
+.view-btn:hover {
+    color: #ffffff !important;
+    background-color: #0dcaf0 !important;
+}
+
+.editBtn {
+    color: #ffc107 !important;
+    background-color: #ffffff !important;
+    border-color: #ffc107 !important;
+    transition: background-color 0.4s, color 0.4s !important;
+    border-width: 2px !important;
+}
+
+.editBtn:hover {
+    color: #ffffff !important;
+    background-color: #ffc107 !important;
+}
+
+.deleteBtn {
+    color: #dc3545 !important;
+    background-color: #ffffff !important;
+    border-color: #dc3545 !important;
+    transition: background-color 0.4s, color 0.4s !important;
+    border-width: 2px !important;
+}
+
+.deleteBtn:hover {
+    color: #ffffff !important;
+    background-color: #dc3545 !important;
+}
+
+.dt-button {
+    background-color: #01c278 !important;
+    border: none !important;
+    color: #fff !important;
+    border-radius: 5px !important;
+    padding: 7px 10px !important;
+    transition: opacity 0.3s !important;
+}
+
+.dt-button:hover {
+    opacity: 0.8 !important;
+}
+
+#pageTitle {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.required-label::after {
+    content: " *";
+    color: red;
+    margin-left: 4px;
 }

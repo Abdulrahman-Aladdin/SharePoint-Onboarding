@@ -7,11 +7,22 @@ function applyTranslations(lang) {
     $(this).text(translations[lang][key]);
   });
 
+  const html = document.documentElement;
+  const bootstrap = document.getElementById("bootstrap-css");
+
   if (lang === "ar") {
-    $("body").attr("dir", "rtl").addClass("rtl");
+    html.setAttribute("dir", "rtl");
+    html.setAttribute("lang", "ar");
+    bootstrap.href = "assets/css/bootstrap.rtl.min.css";
+    $("#addBtn").html(`<i class="bi bi-person-plus-fill m-1"></i> ${translations[lang]["addEmployee"]}`);
   } else {
-    $("body").attr("dir", "ltr").removeClass("rtl");
+    html.setAttribute("dir", "ltr");
+    html.setAttribute("lang", "en");
+    bootstrap.href = "assets/css/bootstrap.min.css";
+    $("#addBtn").html(`<i class="bi bi-person-plus-fill m-1"></i> ${translations[lang]["addEmployee"]}`);
   }
+
+  $("[required]").html += ` <span class="text-danger">*</span>`;
 }
 
 const tableColumns = {
