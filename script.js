@@ -2,6 +2,7 @@ import db from "./assets/customJs/db.js";
 import translations from "./assets/customJs/i18n.js";
 import headerHtml from "./layouts/header.js";
 import footerHtml from "./layouts/footer.js";
+import { validateFormData } from "./assets/customJs/formValidation.js";
 
 function applyTranslations(lang) {
   $("[data-i18n]").each(function () {
@@ -117,6 +118,7 @@ function buildTable(lang) {
 }
 
 function refreshTable() {
+  console.log(db.getAll());
   employeeTable.clear().rows.add(db.getAll()).draw();
 }
 
@@ -152,6 +154,8 @@ function loadColumnsSelection(lang) {
         `);
   });
 }
+
+console.log(import.meta.url);
 
 $("#header").html(headerHtml);
 $("#footer").html(footerHtml);
@@ -243,11 +247,6 @@ $("#employeesTable").on("click", ".editBtn", function () {
 
 $("#btnSave").on("click", function () {
   const form = $("#empForm")[0];
-  if (!form.checkValidity()) {
-    form.classList.add("was-validated");
-    return;
-  }
-
   const employee = {
     firstNameEn: $("#empFirstNameEn").val(),
     lastNameEn: $("#empLastNameEn").val(),
@@ -263,6 +262,10 @@ $("#btnSave").on("click", function () {
     addressAr: $("#empAddressAr").val(),
     phoneNumber: $("#empPhoneNumber").val(),
   };
+
+  if (!validateFormData(employee)) {
+    return;
+  }
 
   if (operation === "edit") {
     db.update(parseInt($("#empId").val()), employee);

@@ -37,74 +37,82 @@
                     
                         <div class="mb-3">
                             <label for="empFirstNameEn" class="form-label required-label" data-i18n="firstNameEn">First Name <span class="text-danger">*</span></label>
-                            <input id="empFirstNameEn" name="firstNameEn" class="form-control" required>
-                            <div class="invalid-feedback">First name is required.</div>
+                            <input id="empFirstNameEn" name="firstNameEn" class="form-control" required data-validate="english">
+                            <div id="empFirstNameEnError" class="invalid-feedback">First name is required.</div>
                         </div>
                     
                         <div class="mb-3">
                             <label for="empLastNameEn" class="form-label required-label" data-i18n="lastNameEn">Last Name <span class="text-danger">*</span></label>
-                            <input id="empLastNameEn" name="lastNameEn" class="form-control" required>
-                            <div class="invalid-feedback">Last name is required.</div>
+                            <input id="empLastNameEn" name="lastNameEn" class="form-control" required data-validate="english">
+                            <div id="empLastNameEnError" class="invalid-feedback">Last name is required.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="empFirstNameAr" class="form-label required-label" data-i18n="firstNameAr">First Name <span
                                     class="text-danger">*</span></label>
-                            <input id="empFirstNameAr" name="firstNameAr" class="form-control" required>
-                            <div class="invalid-feedback">First name is required.</div>
+                            <input id="empFirstNameAr" name="firstNameAr" class="form-control" required data-validate="arabic">
+                            <div id="empFirstNameArError" class="invalid-feedback">First name is required.</div>
                         </div>
                         
                         <div class="mb-3">
                             <label for="empLastNameAr" class="form-label required-label" data-i18n="lastNameAr">Last Name <span
                                     class="text-danger">*</span></label>
-                            <input id="empLastNameAr" name="lastNameAr" class="form-control" required>
-                            <div class="invalid-feedback">Last name is required.</div>
+                            <input id="empLastNameAr" name="lastNameAr" class="form-control" required data-validate="arabic">
+                            <div id="empLastNameArError" class="invalid-feedback">Last name is required.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="empEmail" class="form-label required-label" data-i18n="email">Email <span class="text-danger">*</span></label>
                             <input id="empEmail" name="email" type="email" class="form-control" required>
-                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                            <div id="empEmailError" class="invalid-feedback">Please enter a valid email address.</div>
                         </div>
                     
                         <div class="mb-3">
                             <label for="empPositionEn" class="form-label" data-i18n="positionEn">Position</label>
-                            <input id="empPositionEn" name="positionEn" class="form-control">
+                            <input id="empPositionEn" name="positionEn" class="form-control" data-validate="english" required>
+                            <div id="empPositionEnError" class="invalid-feedback">Please enter a valid position.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="empPositionAr" class="form-label" data-i18n="positionAr">Position</label>
-                            <input id="empPositionAr" name="positionAr" class="form-control">
+                            <input id="empPositionAr" name="positionAr" class="form-control" data-validate="arabic" required>
+                            <div id="empPositionArError" class="invalid-feedback">Please enter a valid position.</div>
                         </div>
                     
                         <div class="mb-3">
                             <label for="empAge" class="form-label" data-i18n="age">Age</label>
-                            <input id="empAge" name="age" type="number" class="form-control">
+                            <input id="empAge" name="age" type="number" class="form-control" required>
+                            <div id="empAgeError" class="invalid-feedback">Please enter a valid age.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="empSalary" class="form-label" data-i18n="salary">Salary</label>
-                            <input id="empSalary" name="salary" type="number" class="form-control">
+                            <input id="empSalary" name="salary" type="number" class="form-control" required>
+                            <div id="empSalaryError" class="invalid-feedback">Please enter a valid salary.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="empJoinDate" class="form-label" data-i18n="joinDate">Join Date</label>
-                            <input id="empJoinDate" name="joinDate" type="date" class="form-control">
+                            <input id="empJoinDate" name="joinDate" type="date" class="form-control" required>
+                            <div id="empJoinDateError" class="invalid-feedback">Please enter a valid join date.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="empAddressEn" class="form-label" data-i18n="addressEn">Address</label>
-                            <input id="empAddressEn" name="addressEn" type="text" class="form-control">
+                            <input id="empAddressEn" name="addressEn" type="text" class="form-control" data-validate="english" required>
+                            <div id="empAddressEnError" class="invalid-feedback">Please enter a valid address.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="empAddressAr" class="form-label" data-i18n="addressAr">Address</label>
-                            <input id="empAddressAr" name="addressAr" type="text" class="form-control">
+                            <input id="empAddressAr" name="addressAr" type="text" class="form-control" data-validate="arabic" required>
+                            <div id="empAddressArError" class="invalid-feedback">Please enter a valid address.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="empPhoneNumber" class="form-label" data-i18n="phoneNumber">Phone Number</label>
-                            <input id="empPhoneNumber" name="phoneNumber" type="text" class="form-control">
+                            <input id="empPhoneNumber" name="phoneNumber" type="text" class="form-control" data-validate="phone" >
+                            <div id="empPhoneNumberError" class="invalid-feedback">Please enter a valid phone number.</div>
                         </div>
                     </form>
                     

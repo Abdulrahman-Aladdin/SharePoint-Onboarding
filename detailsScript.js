@@ -64,12 +64,16 @@ function refreshData(employee, lang) {
   }
 }
 
+console.log(import.meta.url);
 $("#header").html(headerHtml);
 $("#footer").html(footerHtml);
 const params = new URLSearchParams(window.location.search);
 const id = Number(params.get("id"));
+console.log("Employee ID from URL:", id);
 let lang = getCookie("lang") || "en";
 const employee = db.getById(id);
+
+console.log("Employee Data:", employee);
 
 $("#langSelect").val(lang);
 applyTranslations(lang);
