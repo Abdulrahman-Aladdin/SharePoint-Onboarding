@@ -3,7 +3,13 @@ import translations from "./assets/customJs/i18n.js";
 import headerHtml from "./layouts/header.js";
 import footerHtml from "./layouts/footer.js";
 import { validateFormData } from "./assets/customJs/formValidation.js";
-import { getCookie, applyTranslations, getDataTableLanguageOptions } from "./assets/customJs/utils.js";
+import {
+  getCookie,
+  applyTranslations,
+  getDataTableLanguageOptions,
+  filterDataColumns,
+  saveExcel,
+} from "./assets/customJs/utils.js";
 import constants from "./assets/customJs/constants.js";
 
 function buildTable(lang) {
@@ -263,19 +269,7 @@ $("#downloadExcelBtn").on("click", function () {
     selectedCols.push($(this).val());
   });
 
-  console.log("Selected Columns: ", selectedCols);
-  const allData = db.getAll();
-
-  const filteredData = allData.map((emp) => {
-    const filteredEmp = {};
-    selectedCols.forEach((col) => {
-      filteredEmp[translations[lang][col]] = emp[col];
-    });
-    return filteredEmp;
-  });
-
-  const worksheet = XLSX.utils.json_to_sheet(filteredData);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-  XLSX.writeFile(workbook, "employees.xlsx");
+  const filteredData = filterDataColumns(db.getAll(), selectedCols, lang);
+  saveExcel(filteredData, `${translations[lang]["employees"]}.xlsx`);
+  columnsSelectionModal.hide();
 });

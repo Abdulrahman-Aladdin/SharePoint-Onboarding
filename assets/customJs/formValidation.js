@@ -1,13 +1,14 @@
-function markFieldInvalid(fieldId, errorId, message) {
+import { getCookie } from "./utils.js";
+import translations from "./i18n.js";
+
+function markFieldInvalid(fieldId) {
   $(`#${fieldId}`).removeClass("is-valid");
   $(`#${fieldId}`).addClass("is-invalid");
-  $(`#${errorId}`).css("display", "block").text(message);
 }
 
-function markFieldValid(fieldId, errorId) {
+function markFieldValid(fieldId) {
   $(`#${fieldId}`).removeClass("is-invalid");
   $(`#${fieldId}`).addClass("is-valid");
-  $(`#${errorId}`).css("display", "none");
 }
 
 function isEnglishText(text) {
@@ -67,6 +68,7 @@ function validateField(
 }
 
 function validateFormData(employee) {
+  let lang = getCookie("lang") || "en";
   let isValid = true;
 
   console.log("Validating employee data:", employee);
@@ -78,7 +80,7 @@ function validateFormData(employee) {
     "empFirstNameEn",
     "empFirstNameEnError",
     isEnglishText,
-    "Please enter a valid first name in English."
+    translations[lang]["firstNameEnErrorMsg"]
   );
 
   // Validate firstNameAr
@@ -88,7 +90,7 @@ function validateFormData(employee) {
     "empFirstNameAr",
     "empFirstNameArError",
     isArabicText,
-    "Please enter a valid first name in Arabic."
+    translations[lang]["firstNameArErrorMsg"]
   );
 
   // Validate lastNameEn
@@ -98,7 +100,7 @@ function validateFormData(employee) {
     "empLastNameEn",
     "empLastNameEnError",
     isEnglishText,
-    "Please enter a valid last name in English."
+    translations[lang]["lastNameEnErrorMsg"]
   );
 
   // Validate lastNameAr
@@ -108,7 +110,7 @@ function validateFormData(employee) {
     "empLastNameAr",
     "empLastNameArError",
     isArabicText,
-    "Please enter a valid last name in Arabic."
+    translations[lang]["lastNameArErrorMsg"]
   );
 
   // validate email
@@ -118,7 +120,7 @@ function validateFormData(employee) {
     "empEmail",
     "empEmailError",
     isValidEmail,
-    "Please enter a valid email address."
+    translations[lang]["emailErrorMsg"]
   );
 
   // validte positionEn
@@ -128,7 +130,7 @@ function validateFormData(employee) {
     "empPositionEn",
     "empPositionEnError",
     isEnglishText,
-    "Please enter a valid position in English."
+    translations[lang]["positionEnErrorMsg"]
   );
 
   // validate positionAr
@@ -138,7 +140,7 @@ function validateFormData(employee) {
     "empPositionAr",
     "empPositionArError",
     isArabicText,
-    "Please enter a valid position in Arabic."
+    translations[lang]["positionArErrorMsg"]
   );
 
   // validate age
@@ -148,18 +150,18 @@ function validateFormData(employee) {
     "empAge",
     "empAgeError",
     isLegalAge,
-    "Please enter a valid age between 18 and 65."
-    );
-    
-    // validate salary
-    isValid &= validateField(
-      employee.salary,
-      false,
-      "empSalary",
-      "empSalaryError",
-      isValidSalary,
-      "Please enter a valid salary of at least 3000."
-    );
+    translations[lang]["ageErrorMsg"]
+  );
+
+  // validate salary
+  isValid &= validateField(
+    employee.salary,
+    false,
+    "empSalary",
+    "empSalaryError",
+    isValidSalary,
+    translations[lang]["salaryErrorMsg"]
+  );
 
   // validate date
   isValid &= validateField(
@@ -168,7 +170,7 @@ function validateFormData(employee) {
     "empJoinDate",
     "empJoinDateError",
     isValidDate,
-    "Please enter a valid join date."
+    translations[lang]["joinDateErrorMsg"]
   );
 
   // validate addressEn
@@ -178,7 +180,7 @@ function validateFormData(employee) {
     "empAddressEn",
     "empAddressEnError",
     isEnglishText,
-    "Please enter a valid address in English."
+    translations[lang]["addressEnErrorMsg"]
   );
 
   // validate addressAr
@@ -188,7 +190,7 @@ function validateFormData(employee) {
     "empAddressAr",
     "empAddressArError",
     isArabicText,
-    "Please enter a valid address in Arabic."
+    translations[lang]["addressArErrorMsg"]
   );
 
   // validate phone number
@@ -198,7 +200,7 @@ function validateFormData(employee) {
     "empPhoneNumber",
     "empPhoneNumberError",
     isValidPhoneNumber,
-    "Please enter a valid phone number."
+    translations[lang]["phoneNumberErrorMsg"]
   );
 
   return isValid;

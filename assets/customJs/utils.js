@@ -50,3 +50,20 @@ export function getEmployeeFullName(employee, lang) {
     return `${employee.firstNameEn} ${employee.lastNameEn}`;
   }
 }
+
+export function filterDataColumns(data, selectedCols, lang) {
+  return data.map((emp) => {
+    const filteredEmp = {};
+    selectedCols.forEach((col) => {
+      filteredEmp[translations[lang][col]] = emp[col];
+    });
+    return filteredEmp;
+  });
+}
+
+export function saveExcel(data, fileName) {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    XLSX.writeFile(workbook, fileName);
+}
