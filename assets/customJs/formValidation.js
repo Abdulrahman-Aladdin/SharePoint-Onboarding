@@ -71,8 +71,6 @@ function validateFormData(employee) {
   let lang = getCookie("lang") || "en";
   let isValid = true;
 
-  console.log("Validating employee data:", employee);
-
   // Validate firstNameEn
   isValid &= validateField(
     employee.firstNameEn,

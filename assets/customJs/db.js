@@ -3,15 +3,12 @@ class Database {
   _idCounter = 1;
 
   constructor() {
-    console.log("Initializing Database");
-
     const storedData = localStorage.getItem("DB");
 
     if (storedData) {
       const { data, idCounter } = JSON.parse(storedData);
       this._data = data;
       this._idCounter = idCounter;
-      console.log("Loaded data from localStorage:", this._data);
       return;
     } else {
       this._data = [
@@ -83,13 +80,14 @@ class Database {
 
       this._idCounter = 5;
       this._save();
-      console.log("Initialized with default data:", this._data);
+      "Initialized with default data:", this._data;
     }
   }
 
   _save() {
     localStorage.setItem(
-      "DB", JSON.stringify({ data: this._data, idCounter: this._idCounter })
+      "DB",
+      JSON.stringify({ data: this._data, idCounter: this._idCounter })
     );
   }
 
@@ -98,8 +96,6 @@ class Database {
   }
 
   getById(id) {
-    console.log("Fetching item with ID:", id);
-    console.log("Current data:", this._data);
     return this._data.find((item) => item.id === id);
   }
 
@@ -107,8 +103,6 @@ class Database {
     item.id = this._idCounter++;
     this._data.push(item);
     this._save();
-    console.log("Item created:", item);
-    console.log("Updated data:", this._data);
     return item;
   }
 
