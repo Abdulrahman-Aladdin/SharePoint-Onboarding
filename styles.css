@@ -104,16 +104,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* Ensures body fills the viewport */
 }
 
 header,
 footer {
     flex-shrink: 0;
-    /* Keep header/footer fixed size */
 }
 
 .container {
     flex: 1;
-    /* Makes the main content expand to fill remaining space */
 }

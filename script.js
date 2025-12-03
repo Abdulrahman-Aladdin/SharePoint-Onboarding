@@ -3,53 +3,8 @@ import translations from "./assets/customJs/i18n.js";
 import headerHtml from "./layouts/header.js";
 import footerHtml from "./layouts/footer.js";
 import { validateFormData } from "./assets/customJs/formValidation.js";
-
-function applyTranslations(lang) {
-  $("[data-i18n]").each(function () {
-    const key = $(this).data("i18n");
-    $(this).text(translations[lang][key]);
-  });
-
-  const html = document.documentElement;
-  const bootstrap = document.getElementById("bootstrap-css");
-
-  if (lang === "ar") {
-    html.setAttribute("dir", "rtl");
-    html.setAttribute("lang", "ar");
-    bootstrap.href = "assets/css/bootstrap.rtl.min.css";
-    $("#addBtn").html(
-      `<i class="bi bi-person-plus-fill m-1"></i> ${translations[lang]["addEmployee"]}`
-    );
-  } else {
-    html.setAttribute("dir", "ltr");
-    html.setAttribute("lang", "en");
-    bootstrap.href = "assets/css/bootstrap.min.css";
-    $("#addBtn").html(
-      `<i class="bi bi-person-plus-fill m-1"></i> ${translations[lang]["addEmployee"]}`
-    );
-  }
-}
-
-const tableColumns = {
-  en: ["firstNameEn", "lastNameEn", "email", "positionEn", "age", "addressEn"],
-  ar: ["firstNameAr", "lastNameAr", "email", "positionAr", "age", "addressAr"],
-};
-
-const allColumns = [
-  "firstNameEn",
-  "firstNameAr",
-  "lastNameEn",
-  "lastNameAr",
-  "email",
-  "positionEn",
-  "positionAr",
-  "age",
-  "salary",
-  "joinDate",
-  "addressEn",
-  "addressAr",
-  "phoneNumber",
-];
+import { getCookie, applyTranslations, getDataTableLanguageOptions } from "./assets/customJs/utils.js";
+import constants from "./assets/customJs/constants.js";
 
 function buildTable(lang) {
   if (employeeTable) {
@@ -65,10 +20,6 @@ function buildTable(lang) {
           {
             text: translations[lang]["exportExcel"],
             action: function (e, dt, node, config) {
-              // const worksheet = XLSX.utils.json_to_sheet(db.getAll());
-              // const workbook = XLSX.utils.book_new();
-              // XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-              // XLSX.writeFile(workbook, "employees.xlsx");
               loadColumnsSelection(lang);
               columnsSelectionModal.show();
             },
@@ -76,26 +27,28 @@ function buildTable(lang) {
         ],
       },
     },
-    language: {
-      search: translations[lang]["search"],
-      lengthMenu: translations[lang]["lengthMenu"],
-      info: translations[lang]["info"],
-      infoEmpty: translations[lang]["infoEmpty"],
-      infoFiltered: translations[lang]["infoFiltered"],
-      zeroRecords: translations[lang]["zeroRecords"],
-      paginate: {
-        first: translations[lang]["paginateFirst"],
-        previous: translations[lang]["paginatePrevious"],
-        next: translations[lang]["paginateNext"],
-        last: translations[lang]["paginateLast"],
-      },
-    },
+    language: getDataTableLanguageOptions(lang),
     columns: [
-      { data: tableColumns[lang][0], title: translations[lang]["firstName"] },
-      { data: tableColumns[lang][1], title: translations[lang]["lastName"] },
-      { data: tableColumns[lang][2], title: translations[lang]["email"] },
-      { data: tableColumns[lang][3], title: translations[lang]["position"] },
-      { data: tableColumns[lang][4], title: translations[lang]["age"] },
+      {
+        data: constants.tableColumns[lang][0],
+        title: translations[lang]["firstName"],
+      },
+      {
+        data: constants.tableColumns[lang][1],
+        title: translations[lang]["lastName"],
+      },
+      {
+        data: constants.tableColumns[lang][2],
+        title: translations[lang]["email"],
+      },
+      {
+        data: constants.tableColumns[lang][3],
+        title: translations[lang]["position"],
+      },
+      {
+        data: constants.tableColumns[lang][4],
+        title: translations[lang]["age"],
+      },
       {
         data: null,
         title: translations[lang]["actions"],
@@ -118,15 +71,7 @@ function buildTable(lang) {
 }
 
 function refreshTable() {
-  console.log(db.getAll());
   employeeTable.clear().rows.add(db.getAll()).draw();
-}
-
-function getCookie(name) {
-  return document.cookie
-    .split(";")
-    .find((row) => row.startsWith(name + "="))
-    ?.split("=")[1];
 }
 
 function buildBreadcrumb(lang) {
@@ -141,7 +86,7 @@ function loadColumnsSelection(lang) {
   const form = $("#columnsForm");
   form.html("");
 
-  allColumns.forEach((col) => {
+  constants.allColumns.forEach((col) => {
     const labelText = translations[lang][col];
 
     form.append(`
@@ -154,8 +99,6 @@ function loadColumnsSelection(lang) {
         `);
   });
 }
-
-console.log(import.meta.url);
 
 $("#header").html(headerHtml);
 $("#footer").html(footerHtml);
