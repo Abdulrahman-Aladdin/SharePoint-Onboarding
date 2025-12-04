@@ -106,6 +106,11 @@ function loadColumnsSelection(lang) {
   });
 }
 
+function clearFormStyling() {
+  $(".form-control").removeClass("is-invalid");
+  $(".form-control").removeClass("is-valid");
+}
+
 $("#header").html(headerHtml);
 $("#footer").html(footerHtml);
 
@@ -147,6 +152,7 @@ $("#langSelect").on("change", function () {
 });
 
 $("#addBtn").on("click", function () {
+  clearFormStyling();
   $("#modalTitle").text(translations[lang]["addEmployee"]);
 
   operation = "add";
@@ -171,6 +177,7 @@ $("#addBtn").on("click", function () {
 $("#employeesTable").on("click", ".editBtn", function () {
   const row = employeeTable.row($(this).closest("tr"));
   const data = row.data();
+  clearFormStyling();
 
   operation = "edit";
 
