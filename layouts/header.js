@@ -2,7 +2,7 @@ const headerHtml = `
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column p-3">
         <div class="container-fluid">
     
-            <a class="navbar-brand" id="pageTitle" data-i18n="pageTitle">
+            <a href="index.html" class="navbar-brand" id="pageTitle" data-i18n="pageTitle">
             </a>
     
             <div class="d-flex">
